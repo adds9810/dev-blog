@@ -1,7 +1,7 @@
 
-  # Portfolio website development
+  # Portfolio website design
 
-  This is a code bundle for Portfolio website development. The original project is available at https://www.figma.com/design/ds2wzkkIGGgYo8ehWCnIF4/Portfolio-website-development.
+  This is a code bundle for Portfolio website design. The original project is available at https://www.figma.com/design/iJmJUGCr63oKeTGfkAol67/Portfolio-website-design.
 
   ## Running the code
 
