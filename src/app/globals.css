@@ -1,0 +1,121 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: #111827;
+  --text-secondary: #52525b;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --text-secondary: #a1a1aa;
+  --color-surface: #18181b;
+  --color-muted: #27272a;
+  --color-border: #3f3f46;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.35);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family:
+    var(--font-geist-sans),
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    sans-serif;
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-600);
+  outline-offset: 2px;
+}
+
+.page-container {
+  width: min(calc(100% - 2rem), var(--container-max));
+  margin-inline: auto;
+}
+
+.section-gap {
+  padding-block: var(--space-section);
+}
+
+@media (min-width: 48rem) {
+  .section-gap {
+    padding-block: var(--space-section-md);
+  }
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: var(--background);
+  color: var(--foreground);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/**
+ * 네이티브 <select> / <option>은 OS 팝업이라 브라우저마다 다르지만,
+ * color-scheme + option 배경·글자색으로 다크 모드에서 흰 배경+흰 글씨를 완화합니다.
+ */
+select.native-theme-select {
+  background-color: var(--color-surface);
+  color: var(--foreground);
+  border-color: var(--color-border);
+}
+
+html:not(.dark) select.native-theme-select {
+  color-scheme: light;
+}
+
+html.dark select.native-theme-select {
+  color-scheme: dark;
+}
+
+select.native-theme-select option {
+  background-color: var(--color-surface);
+  color: var(--foreground);
+}

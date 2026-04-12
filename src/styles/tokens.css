@@ -1,0 +1,19 @@
+@theme {
+  /* Mobile-first: md 이상(>=768px), 모바일은 767px 이하 */
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+
+  /* Layout */
+  --container-max: 72rem;
+  --space-section: 3.5rem;
+  --space-section-md: 5rem;
+
+  /* Minimal design tokens */
+  --color-brand-600: #2563eb;
+  --color-surface: #ffffff;
+  --color-muted: #f4f4f5;
+  --color-border: #e4e4e7;
+  --radius-md: 0.625rem;
+  --shadow-sm: 0 1px 2px 0 rgb(15 23 42 / 0.08);
+}
