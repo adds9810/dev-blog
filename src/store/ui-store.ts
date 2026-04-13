@@ -36,7 +36,7 @@ export const useUiStore = create<UiState>()(
       setTheme: (theme) => set({ theme }),
     }),
     {
-      name: "seed-kit-ui",
+      name: "dev-blog-ui",
       partialize: (state) => ({ theme: state.theme }),
     },
   ),

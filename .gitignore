@@ -1,1 +1,12 @@
 node_modules/
+
+# 환경변수 (민감 정보)
+.env.local
+.env.*.local
+
+# Next.js 빌드 산출물
+.next/
+out/
+
+# OS
+.DS_Store

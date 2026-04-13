@@ -19,7 +19,7 @@ export const guideCurrentSetup: string[] = [
   "SEO: metadataBase, title default/template, description, keywords, openGraph, twitter, alternates.canonical, robots.ts, sitemap.ts, 페이지별 generateMetadata 예시",
 ];
 
-export const guideFolderStructureTree = `seed-kit/
+export const guideFolderStructureTree = `dev-blog/
 ├── .github/
 │   └── workflows/
 │       └── ci.yml

@@ -12,7 +12,7 @@ export const guideDeveloperTopics: GuideDeveloperTopic[] = [
     bullets: [
       "위치: `src/store/ui-store.ts`",
       "상태: `mobileMenuOpen`, `theme` (`light` / `dark` / `system`)",
-      "persist: `theme`만 localStorage (`seed-kit-ui`)",
+      "persist: `theme`만 localStorage (`dev-blog-ui`)",
       "확장: 커지면 슬라이스 분리 (`ui`, `auth`, `toast` 등)",
     ],
   },

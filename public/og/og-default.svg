@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="seed-kit OG image">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="김지혜 개발 블로그 OG image">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#0f172a"/>
@@ -6,6 +6,6 @@
     </linearGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#bg)"/>
-  <text x="80" y="280" fill="#ffffff" font-size="78" font-family="Arial, sans-serif" font-weight="700">seed-kit</text>
-  <text x="80" y="360" fill="#bfdbfe" font-size="36" font-family="Arial, sans-serif">Next.js + React + Tailwind Starter</text>
+  <text x="80" y="280" fill="#ffffff" font-size="78" font-family="Arial, sans-serif" font-weight="700">김지혜 개발 블로그</text>
+  <text x="80" y="360" fill="#bfdbfe" font-size="36" font-family="Arial, sans-serif">프론트엔드 개발자 김지혜의 개발 기록</text>
 </svg>
