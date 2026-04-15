@@ -1,26 +1,25 @@
 import { Client, isFullBlock, isFullPage } from "@notionhq/client";
-import type {
-  PageObjectResponse,
-  PartialPageObjectResponse,
-  DataSourceObjectResponse,
-  PartialDataSourceObjectResponse,
-} from "@notionhq/client";
+import type { BlockObjectResponse, PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import type { Post, Block } from "@/types/blog";
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
-const DATA_SOURCE_ID = process.env.NOTION_DATABASE_ID ?? "";
+const DATABASE_ID = process.env.NOTION_DATABASE_ID ?? "";
 
-type QueryResult =
-  | PageObjectResponse
-  | PartialPageObjectResponse
-  | DataSourceObjectResponse
-  | PartialDataSourceObjectResponse;
+// 환경변수 디버그 (서버 콘솔에 출력됨)
+console.log(
+  "[notion] NOTION_API_KEY:",
+  process.env.NOTION_API_KEY
+    ? `설정됨 (${process.env.NOTION_API_KEY.slice(0, 8)}...)`
+    : "❌ 없음",
+);
+console.log(
+  "[notion] NOTION_DATABASE_ID:",
+  DATABASE_ID ? `설정됨 (${DATABASE_ID})` : "❌ 없음",
+);
 
-function extractPost(result: QueryResult): Post | null {
-  if (!isFullPage(result)) return null;
-
-  const props = result.properties;
+function extractPost(page: PageObjectResponse): Post | null {
+  const props = page.properties;
 
   const titleProp = props["Name"];
   const slugProp = props["slug"];
@@ -39,7 +38,7 @@ function extractPost(result: QueryResult): Post | null {
   }
 
   return {
-    id: result.id,
+    id: page.id,
     title: titleProp.title[0]?.plain_text ?? "",
     slug: slugProp.rich_text[0]?.plain_text ?? "",
     description: descriptionProp.rich_text[0]?.plain_text ?? "",
@@ -49,8 +48,8 @@ function extractPost(result: QueryResult): Post | null {
 }
 
 export async function getPostList(): Promise<Post[]> {
-  const response = await notion.dataSources.query({
-    data_source_id: DATA_SOURCE_ID,
+  const response = await notion.databases.query({
+    database_id: DATABASE_ID,
     filter: {
       property: "published",
       checkbox: { equals: true },
@@ -59,14 +58,15 @@ export async function getPostList(): Promise<Post[]> {
   });
 
   return response.results.flatMap((result) => {
+    if (!isFullPage(result)) return [];
     const post = extractPost(result);
     return post ? [post] : [];
   });
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
-  const response = await notion.dataSources.query({
-    data_source_id: DATA_SOURCE_ID,
+  const response = await notion.databases.query({
+    database_id: DATABASE_ID,
     filter: {
       and: [
         { property: "published", checkbox: { equals: true } },
@@ -76,7 +76,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   });
 
   const first = response.results[0];
-  if (!first) return null;
+  if (!first || !isFullPage(first)) return null;
 
   return extractPost(first);
 }
@@ -94,7 +94,7 @@ export async function getPostBlocks(pageId: string): Promise<Block[]> {
 
     for (const block of response.results) {
       if (isFullBlock(block)) {
-        blocks.push(block);
+        blocks.push(block as BlockObjectResponse);
       }
     }
 

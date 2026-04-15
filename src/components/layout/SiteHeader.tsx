@@ -70,6 +70,7 @@ export function SiteHeader() {
             value={theme}
             aria-label="색 테마: 라이트, 다크, 시스템"
             onChange={(e) => setTheme(e.target.value as ThemePreference)}
+            suppressHydrationWarning
           >
             <option value="system">시스템</option>
             <option value="light">라이트</option>

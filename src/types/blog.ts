@@ -1,4 +1,4 @@
-import type { BlockObjectResponse } from "@notionhq/client";
+import type { BlockObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 
 export type Post = {
   id: string;
