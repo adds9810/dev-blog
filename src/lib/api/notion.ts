@@ -6,22 +6,10 @@ const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
 const DATABASE_ID = process.env.NOTION_DATABASE_ID ?? "";
 
-// 환경변수 디버그 (서버 콘솔에 출력됨)
-console.log(
-  "[notion] NOTION_API_KEY:",
-  process.env.NOTION_API_KEY
-    ? `설정됨 (${process.env.NOTION_API_KEY.slice(0, 8)}...)`
-    : "❌ 없음",
-);
-console.log(
-  "[notion] NOTION_DATABASE_ID:",
-  DATABASE_ID ? `설정됨 (${DATABASE_ID})` : "❌ 없음",
-);
-
 function extractPost(page: PageObjectResponse): Post | null {
   const props = page.properties;
 
-  const titleProp = props["Name"];
+  const titleProp = props["name"];
   const slugProp = props["slug"];
   const descriptionProp = props["description"];
   const tagsProp = props["tags"];
